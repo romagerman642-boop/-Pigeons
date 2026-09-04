@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIGEON S | Premium Pizza Delivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            color: #2b2b2b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111111;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #e63946;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #4a4a4a;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #e63946;
+        }
+
+        .cart-btn {
+            background-color: #e63946;
+            color: #ffffff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cart-btn:hover {
+            background-color: #d62839;
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 700px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #e63946;
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #d62839;
+            transform: translateY(-2px);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin: 60px 0 30px 0;
+            color: #111111;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-body h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            font-size: 14px;
+            color: #666666;
+            margin-bottom: 20px;
+            height: 60px;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2b2b2b;
+        }
+
+        .btn-add {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        .btn-add:hover {
+            background-color: #e63946;
+        }
+
+        .about {
+            background-color: #ffffff;
+            padding: 60px 0;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .contact {
+            padding-bottom: 60px;
+        }
+
+        .order-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #e63946;
+        }
+
+        .btn-submit {
+            width: 100%;
+        }
+
+        .footer {
+            background-color: #111111;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background: #ffffff;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            margin: 20px 0;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .cart-item-info h4 {
+            font-size: 16px;
+        }
+
+        .cart-item-info p {
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #e63946;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cart-summary {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                height: auto;
+                padding: 15px 20px;
+                gap: 15px;
+            }
+            
+            .hero-content h1 {
+                font-size: 32px;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">PIGEON <span>S</span></a>
+            <nav class="nav">
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#about" class="nav-link">About Us</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button class="cart-btn" id="cart-btn">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Hot & Fresh Pizza Delivered To Your Door</h1>
+                <p>Crafted with authentic Italian ingredients and baked to perfection in wood-fired ovens.</p>
+                <a href="#menu" class="btn btn-primary">Order Now</a>
+            </div>
+        </section>
+
+        <section id="menu" class="menu container">
+            <h2 class="section-title">Our Menu</h2>
+            <div class="menu-grid">
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?auto=format&fit=crop&w=600&q=80" alt="Margherita Pizza">
+                    <div class="card-body">
+                        <h3>Classic Margherita</h3>
+                        <p>Fresh mozzarella, San Marzano tomatoes, sweet basil, and extra virgin olive oil.</p>
+                        <div class="card-footer">
+                            <span class="price">$12.99</span>
+                            <button class="btn btn-add" data-id="1" data-name="Classic Margherita" data-price="12.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?auto=format&fit=crop&w=600&q=80" alt="Pepperoni Feast Pizza">
+                    <div class="card-body">
+                        <h3>Pepperoni Feast</h3>
+                        <p>Loaded with crispy pepperoni slices, spicy tomato sauce, and double mozzarella.</p>
+                        <div class="card-footer">
+                            <span class="price">$15.99</span>
+                            <button class="btn btn-add" data-id="2" data-name="Pepperoni Feast" data-price="15.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=600&q=80" alt="Quattro Formaggi Pizza">
+                    <div class="card-body">
+                        <h3>Quattro Formaggi</h3>
+                        <p>A rich blend of mozzarella, gorgonzola, parmesan, and creamy fontina cheeses.</p>
+                        <div class="card-footer">
+                            <span class="price">$16.49</span>
+                            <button class="btn btn-add" data-id="3" data-name="Quattro Formaggi" data-price="16.49">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=600&q=80" alt="Veggie Supreme Pizza">
+                    <div class="card-body">
+                        <h3>Veggie Supreme</h3>
+                        <p>Bell peppers, red onions, mushrooms, black olives, and fresh spinach with tomato sauce.</p>
+                        <div class="card-footer">
+                            <span class="price">$14.49</span>
+                            <button class="btn btn-add" data-id="4" data-name="Veggie Supreme" data-price="14.49">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80" alt="BBQ Chicken Pizza">
+                    <div class="card-body">
+                        <h3>BBQ Chicken Special</h3>
+                        <p>Grilled chicken breast, smoky BBQ sauce, red onions, cilantro, and melted cheddar.</p>
+                        <div class="card-footer">
+                            <span class="price">$17.29</span>
+                            <button class="btn btn-add" data-id="5" data-name="BBQ Chicken Special" data-price="17.29">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?auto=format&fit=crop&w=600&q=80" alt="Spicy Hawaiian Pizza">
+                    <div class="card-body">
+                        <h3>Spicy Hawaiian</h3>
+                        <p>Smoked ham, juicy pineapple slices, jalapeños, spicy marinara, and mozzarella.</p>
+                        <div class="card-footer">
+                            <span class="price">$14.99</span>
+                            <button class="btn btn-add" data-id="6" data-name="Spicy Hawaiian" data-price="14.99">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container about-container">
+                <div class="about-text">
+                    <h2>About PIGEON S</h2>
+                    <p>At PIGEON S, we are passionate about creating memorable food experiences. Our dough is prepared fresh daily, fermented for 48 hours to ensure supreme lightness and flavor. Coupled with locally sourced vegetables and authentic imported Italian ingredients, every pizza is a masterwork crafted with passion.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=600&q=80" alt="Chef preparing pizza">
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact container">
+            <h2 class="section-title">Contact & Delivery Order</h2>
+            <form id="order-form" class="order-form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="+1 234 567 8900">
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address</label>
+                    <input type="text" id="address" required placeholder="123 Main Street, Apt 4B">
+                </div>
+                <div class="form-group">
+                    <label for="notes">Special Notes</label>
+                    <textarea id="notes" rows="4" placeholder="Gate code, extra sauce, etc."></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-submit">Submit Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 PIGEON S Pizza. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2>Your Cart</h2>
+            <div id="cart-items" class="cart-items"></div>
+            <div class="cart-summary">
+                <span>Total Amount:</span>
+                <span id="cart-total">$0.00</span>
+            </div>
+            <button class="btn btn-primary checkout-btn" id="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        const cartBtn = document.getElementById('cart-btn');
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalClose = document.getElementById('modal-close');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const orderForm = document.getElementById('order-form');
+        const addButtons = document.querySelectorAll('.btn-add');
+
+        addButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.getAttribute('data-id');
+                const name = button.getAttribute('data-name');
+                const price = parseFloat(button.getAttribute('data-price'));
+                addToCart(id, name, price);
+            });
+        });
+
+        function addToCart(id, name, price) {
+            const existingItem = cart.find(item => item.id === id);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id, name, price, quantity: 1 });
+            }
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            cartTotal.textContent = `$${totalPrice.toFixed(2)}`;
+        }
+
+        cartBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+        });
+
+        modalClose.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+
+        checkoutBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                alert('Your cart is empty! Add some pizzas before checking out.');
+            } else {
+                alert('Thank you for your order! It is being processed.');
+                cart = [];
+                updateCartUI();
+                modalOverlay.classList.remove('active');
+            }
+        });
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            alert(`Thank you, ${name}! Your delivery request has been received. We will contact you shortly.`);
+            orderForm.reset();
+        });
+    </script>
+</body>
+</html>
